@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { isNilOrEmpty } from '../utils/helper';
 import ReduxStore from '../redux';
 import { startLogout } from '../redux/actions/userActions';
+import { getLocalStorageTokens } from './utils/helper';
 
 const getResponseBody = (contentType = '', response) => {
   if (contentType.includes('text/plain')) {
@@ -141,8 +142,8 @@ async function handleNetworkCall(apiObject) {
 
   if (isAuthenticationRequired) {
     if (isNilOrEmpty(fetchObject.headers.authorization)) {
-      const token = localStorage.getItem('AUTH_TOKEN');
-      fetchObject.headers.authorization = `BEARER ${token}`;
+      const { accessToken } = getLocalStorageTokens();
+      fetchObject.headers.authorization = `BEARER ${accessToken}`;
     }
   }
 

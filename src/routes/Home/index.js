@@ -1,7 +1,15 @@
 import React from 'react';
+import { useHomeHook } from '../../hooks/homeHooks';
 
 const Home = () => {
-  return <div>This is Home route</div>;
+  const { logoutRequestHandler } = useHomeHook();
+
+  return (
+    <div>
+      <div>This is login route</div>
+      <button onClick={logoutRequestHandler}>LogOut</button>
+    </div>
+  );
 };
 
 export default Home;

@@ -1,9 +1,9 @@
 import actionTypes from '../actionTypes';
 
-export const requestUserRequest = (data) => {
+export const requestUserRequest = (userName, password) => {
   return {
     type: actionTypes.USER_REQUEST,
-    payload: data
+    payload: { userName, password }
   };
 };
 
@@ -16,4 +16,10 @@ export const requestUserSuccess = (data) => {
 
 export const requestUserFailure = () => {
   return { type: actionTypes.USER_FAILURE, payload: {} };
+};
+
+export const startLogout = () => {
+  return {
+    type: actionTypes.LOGOUT
+  };
 };

@@ -1,8 +1,5 @@
 import actionTypes from '../actionTypes';
-import {
-  getLocalStorageTokens,
-  clearLocalStorage
-} from '../../services/utils/helper';
+import { getLocalStorageTokens } from '../../services/utils/helper';
 
 const initialState = () => {
   const { userName, accessToken, refreshToken } = getLocalStorageTokens();
@@ -40,10 +37,8 @@ export default function (state = initialState(), action = {}) {
         loginSpinner: false
       };
     }
-    case actionTypes.LOGOUT: {
-      clearLocalStorage();
+    case actionTypes.LOGOUT:
       return initialState;
-    }
 
     default:
       return { ...state };

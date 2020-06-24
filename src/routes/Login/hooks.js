@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { requestUserRequest } from '../redux/actions/userActions';
+import { requestUserRequest } from '../../redux/actions/userActions';
 
 export const useLoginHook = () => {
   const dispatch = useDispatch();

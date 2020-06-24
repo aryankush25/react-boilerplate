@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHomeHook } from '../../hooks/homeHooks';
+import { useHomeHook } from './hooks';
 import SharedButton from '../../components/shared/SharedButton';
 
 const Home = () => {

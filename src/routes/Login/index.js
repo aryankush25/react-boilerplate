@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoginHook } from '../../hooks/loginHooks';
+import { useLoginHook } from './hooks';
 import SharedButton from '../../components/shared/SharedButton';
 
 const Login = () => {

@@ -5,7 +5,7 @@ import {
   Redirect,
   BrowserRouter as Router
 } from 'react-router-dom';
-import { isTokensPresentLocalStorage } from '../services/utils/helper';
+import { isTokensPresentLocalStorage } from '../utils/tokensHelper';
 import {
   ROOT_ROUTE,
   LOGIN_ROUTE,

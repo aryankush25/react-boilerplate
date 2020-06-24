@@ -1,4 +1,4 @@
-import { isPresent } from '../../utils/helper';
+import { isPresent } from './helper';
 
 export const setLocalStorageTokens = (tokens) => {
   const { userName, accessToken, refreshToken } = tokens;

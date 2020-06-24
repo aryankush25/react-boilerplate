@@ -5,7 +5,7 @@ import { requestUserSuccess, requestUserFailure } from '../actions/userActions';
 import {
   setLocalStorageTokens,
   clearLocalStorage
-} from '../../services/utils/helper';
+} from '../../utils/tokensHelper';
 import { HOME_ROUTE, LOGIN_ROUTE } from '../../utils/routesNavigationConstants';
 import { navigateTo } from '../utils/helper';
 

@@ -1,5 +1,5 @@
 import actionTypes from '../actionTypes';
-import { getLocalStorageTokens } from '../../services/utils/helper';
+import { getLocalStorageTokens } from '../../utils/tokensHelper';
 
 const initialState = () => {
   const { userName, accessToken, refreshToken } = getLocalStorageTokens();

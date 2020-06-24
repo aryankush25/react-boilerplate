@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { startLogout } from '../../redux/actions/userActions';
+import { startLogout } from '../../store/actions/userActions';
 
 export const useHomeHook = () => {
   const dispatch = useDispatch();

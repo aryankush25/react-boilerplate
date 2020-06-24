@@ -2,8 +2,8 @@ import httpStatus from 'http-status';
 import fetch from 'node-fetch';
 import _ from 'lodash';
 import { isNilOrEmpty } from '../utils/helper';
-import ReduxStore from '../redux';
-import { startLogout } from '../redux/actions/userActions';
+import ReduxStore from '../store';
+import { startLogout } from '../store/actions/userActions';
 import { getLocalStorageTokens } from './utils/helper';
 
 const getResponseBody = (contentType = '', response) => {

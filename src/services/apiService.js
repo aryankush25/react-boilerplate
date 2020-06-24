@@ -1,5 +1,6 @@
 import httpStatus from 'http-status';
 import fetch from 'node-fetch';
+import { toastr } from 'react-redux-toastr';
 import _ from 'lodash';
 import { isNilOrEmpty } from '../utils/helper';
 import ReduxStore from '../store';
@@ -168,11 +169,12 @@ export function callApi(apiObject) {
       resolve(response);
     } catch (err) {
       if (err.responseStatus === httpStatus.INTERNAL_SERVER_ERROR) {
-        console.log(
+        toastr.error(
           `An error has ocurred, please try again. If this error persists contact SKF administrator for more information.`
         );
       }
       if (err.responseStatus === httpStatus.UNAUTHORIZED) {
+        toastr.error('Login Token expired, please Login again.');
         ReduxStore.dispatch(startLogout());
         return resolve([]);
       }

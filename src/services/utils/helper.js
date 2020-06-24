@@ -19,16 +19,8 @@ export const getLocalStorageTokens = () => {
 export const isTokensPresentLocalStorage = () => {
   const { userName, accessToken, refreshToken } = getLocalStorageTokens();
 
-  const isTokensUndefined =
-    userName === 'undefined' ||
-    accessToken === 'undefined' ||
-    refreshToken === 'undefined';
-
   return (
-    isPresent(userName) &&
-    isPresent(accessToken) &&
-    isPresent(refreshToken) &&
-    !isTokensUndefined
+    isPresent(userName) && isPresent(accessToken) && isPresent(refreshToken)
   );
 };
 

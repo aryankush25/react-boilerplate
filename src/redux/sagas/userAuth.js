@@ -1,10 +1,13 @@
 import { takeLatest, delay, put } from 'redux-saga/effects';
+
 import actionTypes from '../actionTypes';
 import { requestUserSuccess, requestUserFailure } from '../actions/userActions';
 import {
   setLocalStorageTokens,
   clearLocalStorage
 } from '../../services/utils/helper';
+import { HOME_ROUTE, LOGIN_ROUTE } from '../../utils/routesNavigationConstants';
+import { navigateTo } from '../utils/helper';
 
 function* fetchUserAsync(action) {
   try {
@@ -30,6 +33,8 @@ function* fetchUserAsync(action) {
       refreshToken: data.refreshToken
     });
 
+    navigateTo(HOME_ROUTE);
+
     yield put(requestUserSuccess(data));
   } catch (error) {
     console.log(error);
@@ -41,9 +46,9 @@ export function* logout(action) {
   try {
     yield delay(1000);
 
-    console.log('hello');
-
     clearLocalStorage();
+
+    navigateTo(LOGIN_ROUTE);
   } catch (error) {
     console.log(error);
   }

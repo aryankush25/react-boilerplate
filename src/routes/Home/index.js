@@ -6,7 +6,7 @@ const Home = () => {
 
   return (
     <div>
-      <div>This is login route</div>
+      <div>This is home route</div>
       <button onClick={logoutRequestHandler}>LogOut</button>
     </div>
   );

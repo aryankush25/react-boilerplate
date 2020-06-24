@@ -1,12 +1,11 @@
 import { takeLatest, delay, put } from 'redux-saga/effects';
-
 import actionTypes from '../actionTypes';
 import { requestUserSuccess, requestUserFailure } from '../actions/userActions';
 import {
   setLocalStorageTokens,
   clearLocalStorage
 } from '../../utils/tokensHelper';
-import { HOME_ROUTE, LOGIN_ROUTE } from '../../utils/routesNavigationConstants';
+import { HOME_ROUTE, LOGIN_ROUTE } from '../../utils/routesConstants';
 import { navigateTo } from '../utils/helper';
 
 function* fetchUserAsync(action) {
@@ -18,8 +17,6 @@ function* fetchUserAsync(action) {
     console.log({ userName, password });
 
     // Do api call here
-
-    yield delay(1000);
 
     const data = {
       userName: userName,
@@ -44,7 +41,7 @@ function* fetchUserAsync(action) {
 
 export function* logout(action) {
   try {
-    yield delay(1000);
+    yield delay(100); // you can remove this
 
     clearLocalStorage();
 

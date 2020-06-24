@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import {
   Route,
   Switch,
@@ -6,85 +7,75 @@ import {
   BrowserRouter as Router
 } from 'react-router-dom';
 import { isTokensPresentLocalStorage } from '../utils/tokensHelper';
-import {
-  ROOT_ROUTE,
-  LOGIN_ROUTE,
-  HOME_ROUTE
-} from '../utils/routesNavigationConstants';
+import { ROOT_ROUTE, LOGIN_ROUTE, HOME_ROUTE } from '../utils/routesConstants';
 import Landing from './Landing';
 import PageNotFound from './PageNotFound';
 import Login from './Login';
 import Home from './Home';
 
-const routesConfig = [
-  {
+const routesConfig = {
+  landing: {
     path: ROOT_ROUTE,
     component: Landing,
-    name: 'Landing',
     exact: true,
     privateRoute: false
   },
-  {
+  login: {
     path: LOGIN_ROUTE,
     component: Login,
-    name: 'Login',
     exact: true,
     privateRoute: false
   },
-  {
+  home: {
     path: HOME_ROUTE,
     component: Home,
-    name: 'Home',
     exact: true,
     privateRoute: true
   }
-];
+};
 
-const RoutesProtection = (props) => {
+const ProtectedRoutes = (props) => {
   const { component: Component, privateRoute, ...rest } = props;
   const isUserPresent = isTokensPresentLocalStorage();
+
+  const isValidRoute =
+    (privateRoute && isUserPresent) || !(privateRoute || isUserPresent);
 
   return (
     <Route
       {...rest}
-      render={(props) => {
-        if (privateRoute) {
-          if (isUserPresent) {
-            return <Component {...props} />;
-          }
-
-          return <Redirect to={LOGIN_ROUTE} />;
-        } else {
-          if (!isUserPresent) {
-            return <Component {...props} />;
-          }
-
-          return <Redirect to={HOME_ROUTE} />;
-        }
-      }}
+      render={(props) =>
+        isValidRoute ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={privateRoute ? LOGIN_ROUTE : HOME_ROUTE} />
+        )
+      }
     />
   );
 };
 
 const AppRoutes = () => {
+  const routes = _.keys(routesConfig);
+
   return (
     <Router>
       <Switch>
-        {routesConfig.map((config) => {
+        {routes.map((route) => {
+          const config = routesConfig[route];
+
           return (
             <Route
               exact={config.exact}
-              key={`${config.name}`}
+              key={`${route}`}
               path={config.path}
-              render={(props) => {
-                return (
-                  <RoutesProtection
-                    component={config.component}
-                    privateRoute={config.privateRoute}
-                    {...props}
-                  />
-                );
-              }}
+              render={(props) => (
+                <ProtectedRoutes
+                  component={config.component}
+                  privateRoute={config.privateRoute}
+                  {...props}
+                />
+              )}
             />
           );
         })}

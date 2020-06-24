@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHomeHook } from '../../hooks/homeHooks';
+import SharedButton from '../../components/shared/SharedButton';
 
 const Home = () => {
   const { logoutRequestHandler } = useHomeHook();
@@ -7,7 +8,7 @@ const Home = () => {
   return (
     <div>
       <div>This is home route</div>
-      <button onClick={logoutRequestHandler}>LogOut</button>
+      <SharedButton label="LogOut" onClick={logoutRequestHandler} />
     </div>
   );
 };

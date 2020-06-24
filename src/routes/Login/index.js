@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoginHook } from '../../hooks/loginHooks';
+import SharedButton from '../../components/shared/SharedButton';
 
 const Login = () => {
   const { signInRequestHandler } = useLoginHook();
@@ -7,7 +8,7 @@ const Login = () => {
   return (
     <div>
       <div>This is login route</div>
-      <button onClick={signInRequestHandler}>Sign In</button>
+      <SharedButton label="Sign In" onClick={signInRequestHandler} />
     </div>
   );
 };

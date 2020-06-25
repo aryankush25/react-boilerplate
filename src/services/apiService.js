@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { isNilOrEmpty } from '../utils/helper';
 import ReduxStore from '../store';
 import { startLogout } from '../store/actions/userActions';
-import { getLocalStorageTokens } from './utils/helper';
+import { getLocalStorageTokens } from '../utils/tokensHelper';
 
 const getResponseBody = (contentType = '', response) => {
   if (contentType.includes('text/plain')) {

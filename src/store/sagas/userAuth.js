@@ -6,7 +6,7 @@ import {
   clearLocalStorage
 } from '../../utils/tokensHelper';
 import { HOME_ROUTE, LOGIN_ROUTE } from '../../utils/routesConstants';
-import { navigateTo } from '../utils/helper';
+import { navigateTo } from '../../utils/history';
 
 function* fetchUserAsync(action) {
   try {

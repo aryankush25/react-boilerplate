@@ -1,6 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 import ReduxToastr from 'react-redux-toastr';
+import history from '../../utils/history';
 import store from '../../store';
 import AppRoutes from '../../routes';
 
@@ -11,7 +13,9 @@ function App() {
   return (
     <Provider store={store}>
       <div className="app-container">
-        <AppRoutes />
+        <ConnectedRouter history={history}>
+          <AppRoutes />
+        </ConnectedRouter>
 
         <ReduxToastr
           timeOut={4000}

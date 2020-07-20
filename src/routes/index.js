@@ -1,11 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {
-  Route,
-  Switch,
-  Redirect,
-  BrowserRouter as Router
-} from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { isPresentLocalStorageTokens } from '../utils/tokensHelper';
 import { ROOT_ROUTE, LOGIN_ROUTE, HOME_ROUTE } from '../utils/routesConstants';
 import Landing from './Landing';
@@ -59,31 +54,29 @@ const AppRoutes = () => {
   const routes = _.keys(routesConfig);
 
   return (
-    <Router>
-      <Switch>
-        {routes.map((route) => {
-          const config = routesConfig[route];
+    <Switch>
+      {routes.map((route) => {
+        const config = routesConfig[route];
 
-          return (
-            <Route
-              exact={config.exact}
-              key={`${route}`}
-              path={config.path}
-              render={(props) => (
-                <ProtectedRoutes
-                  component={config.component}
-                  privateRoute={config.privateRoute}
-                  {...props}
-                />
-              )}
-            />
-          );
-        })}
+        return (
+          <Route
+            exact={config.exact}
+            key={`${route}`}
+            path={config.path}
+            render={(props) => (
+              <ProtectedRoutes
+                component={config.component}
+                privateRoute={config.privateRoute}
+                {...props}
+              />
+            )}
+          />
+        );
+      })}
 
-        <Route path="*" render={() => <PageNotFound />} />
-      </Switch>
-    </Router>
+      <Route path="*" render={() => <PageNotFound />} />
+    </Switch>
   );
 };
 
-export default AppRoutes;
+export default withRouter(AppRoutes);

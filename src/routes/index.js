@@ -6,7 +6,7 @@ import {
   Redirect,
   BrowserRouter as Router
 } from 'react-router-dom';
-import { isTokensPresentLocalStorage } from '../utils/tokensHelper';
+import { isPresentLocalStorageTokens } from '../utils/tokensHelper';
 import { ROOT_ROUTE, LOGIN_ROUTE, HOME_ROUTE } from '../utils/routesConstants';
 import Landing from './Landing';
 import PageNotFound from './PageNotFound';
@@ -36,7 +36,7 @@ const routesConfig = {
 
 const ProtectedRoutes = (props) => {
   const { component: Component, privateRoute, ...rest } = props;
-  const isUserPresent = isTokensPresentLocalStorage();
+  const isUserPresent = isPresentLocalStorageTokens();
 
   const isValidRoute =
     (privateRoute && isUserPresent) || !(privateRoute || isUserPresent);

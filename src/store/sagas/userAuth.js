@@ -3,7 +3,7 @@ import actionTypes from '../actionTypes';
 import { requestUserSuccess, requestUserFailure } from '../actions/userActions';
 import {
   setLocalStorageTokens,
-  clearLocalStorage
+  clearLocalStorageTokens
 } from '../../utils/tokensHelper';
 import { HOME_ROUTE, LOGIN_ROUTE } from '../../utils/routesConstants';
 import { navigateTo } from '../../utils/history';
@@ -43,7 +43,7 @@ export function* logout(action) {
   try {
     yield delay(100); // you can remove this
 
-    clearLocalStorage();
+    clearLocalStorageTokens();
 
     navigateTo(LOGIN_ROUTE);
   } catch (error) {

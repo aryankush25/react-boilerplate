@@ -36,18 +36,11 @@ const ProtectedRoutes = (props) => {
   const isValidRoute =
     (privateRoute && isUserPresent) || !(privateRoute || isUserPresent);
 
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        isValidRoute ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={privateRoute ? LOGIN_ROUTE : HOME_ROUTE} />
-        )
-      }
-    />
-  );
+  if (isValidRoute) {
+    return <Component {...rest} />;
+  }
+
+  return <Redirect to={privateRoute ? LOGIN_ROUTE : HOME_ROUTE} />;
 };
 
 const AppRoutes = () => {
